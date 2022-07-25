@@ -56,10 +56,10 @@ CREATE TABLE jps_user.orderdetail_tran
   uke_no                         integer NOT NULL ,
   linum_no                       integer NOT NULL ,
   sz_no                          integer NOT NULL ,
-  nos_date                       varchar(4) ,
-  unipri_no                      varchar(200) ,
-  orice_no                       varchar(5) ,
-  pos_no                         varchar(4) ,
+  nos_date                       integer NOT NULL ,
+  unipri_no                      integer ,
+  orice_no                       integer,
+  pos_no                         integer ,
  CONSTRAINT orderdetail_tran_pk PRIMARY KEY (sz_no,uke_no,linum_no)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE jps_user.unitprice_tran
 (
   sz_no                         integer NOT NULL              ,
   sz_date                       varchar(200)    ,
-  unipri_no                     integer   ,
+  unipri_no                     varchar(200)   ,
   CONSTRAINT unitprice_tran_pk PRIMARY KEY (sz_no)
 );
 
@@ -118,40 +118,42 @@ INSERT INTO jps_user.order_tran VALUES(14,'2022-07-03','2022-07-07','4',null,'B0
 INSERT INTO jps_user.order_tran VALUES(15,'2022-07-03','2022-07-15','5',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
 
 
-INSERT INTO jps_user.orderdetail_tran VALUES(1,1,1,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(2,2,2,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(3,3,3,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(4,4,4,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(5,5,5,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(6,6,6,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(7,7,7,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(8,8,8,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(9,9,9,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(10,10,10,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(11,11,11,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(12,12,12,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(13,13,13,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(14,14,14,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
-INSERT INTO jps_user.orderdetail_tran VALUES(15,15,15,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(1,1,1,1,4500,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(2,2,2,2,2300,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(3,3,3,3,1400,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(4,4,4,4,1000,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(5,5,5,5,800,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(6,6,6,6,3400,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(7,7,7,7,1800,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(8,8,8,8,1200,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(9,9,9,9,900,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(10,10,10,10,600,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(11,11,11,11,4500,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(12,12,12,12,3400,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(13,13,13,13,1200,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(14,14,14,14,1200,null,1000);
+INSERT INTO jps_user.orderdetail_tran(uke_no,linum_no,sz_no,nos_date,unipri_no,orice_no,pos_no) VALUES(15,15,15,15,900,null,1000);
 
 
-INSERT INTO jps_user.unitprice_tran VALUES(1,'B0(1456×1030)',4500);
-INSERT INTO jps_user.unitprice_tran VALUES(2,'B1(1030×728)',2300);
-INSERT INTO jps_user.unitprice_tran VALUES(3,'B2(728×515)',1400);
-INSERT INTO jps_user.unitprice_tran VALUES(4,'B3(515×364)',1000);
-INSERT INTO jps_user.unitprice_tran VALUES(5,'B4(364×257)',800);
-INSERT INTO jps_user.unitprice_tran VALUES(6,'A0(1189×841)',3400);
-INSERT INTO jps_user.unitprice_tran VALUES(7,'A1(841×594)',1800);
-INSERT INTO jps_user.unitprice_tran VALUES(8,'A2(594×420)',1200);
-INSERT INTO jps_user.unitprice_tran VALUES(9,'A3(420×297)',900);
-INSERT INTO jps_user.unitprice_tran VALUES(10,'A4(297×210)',600);
-INSERT INTO jps_user.unitprice_tran VALUES(11,'その他(変形)',2000);
-INSERT INTO jps_user.unitprice_tran VALUES(12,'B0(1456×1030)',4500);
-INSERT INTO jps_user.unitprice_tran VALUES(13,'B4(364×257)',800);
-INSERT INTO jps_user.unitprice_tran VALUES(14,'A2(594×420)',1200);
-INSERT INTO jps_user.unitprice_tran VALUES(15,'A4(297×210)',600);
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(1,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(2,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(3,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(4,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(5,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(6,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(7,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(8,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(9,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(10,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(11,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(12,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(13,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(14,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+INSERT INTO jps_user.unitprice_tran(sz_no,sz_date,unipri_no) VALUES(15,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
+
 
 
 COMMIT;
 
 EOSQL
+

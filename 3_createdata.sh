@@ -1,11 +1,11 @@
 psql -U jps_user -d jpsdb << "EOSQL"
-
 CREATE SEQUENCE jps_user.kaiin_id_seq MAXVALUE 99999999 CYCLE;
 CREATE SEQUENCE jps_user.uke_no_seq MAXVALUE 99999999 CYCLE;
 CREATE SEQUENCE jps_user.pt_no_seq MAXVALUE 99999999 CYCLE;
 CREATE SEQUENCE jps_user.pp_no_seq MAXVALUE 99999999 CYCLE;
 CREATE SEQUENCE jps_user.linum_no_seq MAXVALUE 99999999 CYCLE;
 CREATE SEQUENCE jps_user.sz_no_seq MAXVALUE 99999999 CYCLE;
+
 
 CREATE TABLE jps_user.member_master
 (
@@ -19,6 +19,7 @@ CREATE TABLE jps_user.member_master
   CONSTRAINT member_master_pk PRIMARY KEY (kaiin_id)
 );
 
+
 CREATE TABLE jps_user.memberclient_master
 (
   kaiin_id                        integer NOT NULL ,
@@ -31,6 +32,7 @@ CREATE TABLE jps_user.memberclient_master
   add3_name                     varchar(32) ,
 CONSTRAINT memberclient_master_pk PRIMARY KEY (pp_no,kaiin_id)
 );
+
 
 CREATE TABLE jps_user.order_tran
 (
@@ -66,12 +68,12 @@ CREATE TABLE jps_user.unitprice_tran
 (
   sz_no                         integer NOT NULL              ,
   sz_date                       varchar(200)    ,
-  unipri_no                     varchar(200)   ,
+  unipri_no                     integer   ,
   CONSTRAINT unitprice_tran_pk PRIMARY KEY (sz_no)
 );
 
-commit;
 
+commit;
 
 
 INSERT INTO jps_user.member_master VALUES(1,'広報','03-3252-5571','101-004','東京都','千代田区鍛冶町','鍛冶町1617');
@@ -79,7 +81,6 @@ INSERT INTO jps_user.member_master VALUES(2,'ヤカ','047-385-6111','270-2255','
 INSERT INTO jps_user.member_master VALUES(3,'ALIVE','03-5845-9410','121-0012','東京都','足立区','青井6-11-12グランシャリオ1F');
 INSERT INTO jps_user.member_master VALUES(4,'CFY柏営業所','04-7170-2096','277-0005','千葉県','柏市','柏2-5-8セントラルビル5階');
 INSERT INTO jps_user.member_master VALUES(5,'広報','03-3252-5571','101-004','東京都','千代田区鍛冶町','鍛冶町1617');
-
 
 
 INSERT INTO jps_user.memberclient_master VALUES(1,1,'やすだ幕張店','043-276-5510','262-0032','千葉県','千葉市花見川区','幕張77103');
@@ -101,7 +102,6 @@ INSERT INTO jps_user.memberclient_master VALUES(5,1,'やすだ幕張店','043-27
 INSERT INTO jps_user.memberclient_master VALUES(5,2,'やすだ南流山店','04-7158-0163','270-0163','千葉県','流山市','南流山1-9-17');
 
 
-
 INSERT INTO jps_user.order_tran VALUES(1,'2022-02-13','2022-02-15','1',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
 INSERT INTO jps_user.order_tran VALUES(2,'2022-03-13','2022-03-15','2',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
 INSERT INTO jps_user.order_tran VALUES(3,'2022-05-13','2022-05-15','3',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
@@ -116,7 +116,6 @@ INSERT INTO jps_user.order_tran VALUES(11,'2023-02-13','2023-02-15','2',null,'B0
 INSERT INTO jps_user.order_tran VALUES(12,'2023-03-13','2023-03-15','3',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
 INSERT INTO jps_user.order_tran VALUES(14,'2022-07-03','2022-07-07','4',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
 INSERT INTO jps_user.order_tran VALUES(15,'2022-07-03','2022-07-15','5',null,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)',null,null,null,null,'tel');
-
 
 
 INSERT INTO jps_user.orderdetail_tran VALUES(1,1,1,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
@@ -136,26 +135,23 @@ INSERT INTO jps_user.orderdetail_tran VALUES(14,14,14,null,'B0(4,500円)''B1(2,3
 INSERT INTO jps_user.orderdetail_tran VALUES(15,15,15,null,'B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)',null,null);
 
 
-
-INSERT INTO jps_user.unitprice_tran VALUES(1,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(2,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(3,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(4,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(5,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(6,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(7,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(8,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(9,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(10,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(11,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(12,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(13,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(14,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-INSERT INTO jps_user.unitprice_tran VALUES(15,'B0(1456×1030)''B1(1030×728)''B2(728×515)''B3(515×364)''B4(364×257)''A0(1189×841)''A1(841×594)''A2(594×420)''A3(420×297)''A4(297×210)''その他(変形)','B0(4,500円)''B1(2,300円)''B2(1,400円)''B3(1,000円)''B4(800円)''A0(3,400円)''A1(1,800円)''A2(1,200円)''A3(900円)''A4(600円)''変形サイズ(応相談)');
-
+INSERT INTO jps_user.unitprice_tran VALUES(1,'B0(1456×1030)',4500);
+INSERT INTO jps_user.unitprice_tran VALUES(2,'B1(1030×728)',2300);
+INSERT INTO jps_user.unitprice_tran VALUES(3,'B2(728×515)',1400);
+INSERT INTO jps_user.unitprice_tran VALUES(4,'B3(515×364)',1000);
+INSERT INTO jps_user.unitprice_tran VALUES(5,'B4(364×257)',800);
+INSERT INTO jps_user.unitprice_tran VALUES(6,'A0(1189×841)',3400);
+INSERT INTO jps_user.unitprice_tran VALUES(7,'A1(841×594)',1800);
+INSERT INTO jps_user.unitprice_tran VALUES(8,'A2(594×420)',1200);
+INSERT INTO jps_user.unitprice_tran VALUES(9,'A3(420×297)',900);
+INSERT INTO jps_user.unitprice_tran VALUES(10,'A4(297×210)',600);
+INSERT INTO jps_user.unitprice_tran VALUES(11,'その他(変形)',2000);
+INSERT INTO jps_user.unitprice_tran VALUES(12,'B0(1456×1030)',4500);
+INSERT INTO jps_user.unitprice_tran VALUES(13,'B4(364×257)',800);
+INSERT INTO jps_user.unitprice_tran VALUES(14,'A2(594×420)',1200);
+INSERT INTO jps_user.unitprice_tran VALUES(15,'A4(297×210)',600);
 
 
 COMMIT;
 
 EOSQL
-
